@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.1",
+    "@openzeppelin/contracts-upgradeable": "^4.8.1",
+    "hardhat": "^2.13.1"
+  },
+  "scripts": {
+    "compile": "npx hardhat compile"
+  }
+}
