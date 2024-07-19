@@ -21,7 +21,7 @@ contract SeraphERC1155 is Initializable, ContextUpgradeable, ERC1155Upgradeable,
     string private _symbol;
 
     modifier onlyAdmin(bytes32 role) {
-        require(hasRole(role, _msgSender()), "Permission denied");
+        require(hasRole(role, msg.sender), "Permission denied");
         _;
     }
 
@@ -53,7 +53,7 @@ contract SeraphERC1155 is Initializable, ContextUpgradeable, ERC1155Upgradeable,
 
     function uri(uint256 id) public view override returns (string memory) {
         require(exists(id), "URI: nonexistent token");
-        return bytes(super.uri(id)).length > 0 ? string(abi.encodePacked(abi.encodePacked(super.uri(id), id.toString()), ".json")) : id.toString();
+        return bytes(super.uri(id)).length > 0 ? string.concat(super.uri(id), id.toString(), ".json") : "";
     }
 
     function submitURIEvent(uint256 tokenId) public virtual onlyAdmin(DEFAULT_ADMIN_ROLE){
